@@ -1,0 +1,33 @@
+# compiled output
+/dist
+/temp
+/test
+**/package-lock.json
+
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+src/locales/en.xlsx
+src/locales/nl.xlsx
+src/locales/translations.xlsx
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+npm-debug.log
+tests/testcafe/reports
+tests/unit/repor
