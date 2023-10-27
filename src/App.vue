@@ -3,4 +3,15 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script> -->
 
-<template>at ScssParser0._stylesheet0$_declarationOrStyleRule$0 (/Users/karthikdevadiga/Documents/workspace/front-end-apps/findme-app/node_modules/sass/sass.dart.js:110653:87)</template>
+<template>
+  <div
+    class="min-h-screen bg-gradient-to-r from-color-primary-2 to-color-primary-1 flex items-center justify-center"
+  >
+    <div class="h-[60rem] w-3/5 bg-white rounded-[3rem]">
+      <!-- Singn up and login functionalities -->
+      <div class="auth">auth</div>
+      <!-- User Dash-board -->
+      <div class="dash-board">dash-board</div>
+    </div>
+  </div>
+</template>
