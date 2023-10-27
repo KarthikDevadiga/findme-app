@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: 400;
+  padding: 0;
+}
+// will changing the font size for perticular div when required
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $myfont-family;
+}
+
+/*  min-height:20rem; // height will be 20rem, if the content extends, than the heights extends. */
+/*   max-height : 10rem; height will remain 10rem even if the content exceeds, even if the the value is 100 rem the height will exectly as the content fits if the contet excedds beyond 100rem the content overflows*/
+/*   min-width:10rem;the div will not get smaller than 10rem, else it will spread to the parent width */
+/*   max-width:10rem;the div will be 10rem, if the screen srinks, the div also srinks till 0rem */
