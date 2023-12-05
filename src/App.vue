@@ -14,12 +14,24 @@ import HelloWorld from './components/HelloWorld.vue'
         <div class="form_section w-1/2 flex flex-col items-center">
           <div class="login_form w-full">
             <form action="" type="submit" class="login">
-              <div class="login__user-name">
-                <div class="login__user-icon">US</div>
+              <div class="login__user-name flex justify-between items-center">
+                <div class="login__user-icon">
+                  <svg class="user-icon h-10 w-10">
+                    <use
+                      xlink:href="src/assets/svg/icomoon/sprite.svg#icon-user"
+                    ></use>
+                  </svg>
+                </div>
                 <input class="login__login-input" type="text" />
               </div>
               <div class="login__user-password">
-                <div class="login__key-icon">KE</div>
+                <div class="login__key-icon">
+                  <svg class="key-icon h-10 w-10">
+                    <use
+                      xlink:href="src/assets/svg/icomoon/sprite.svg#icon-key"
+                    ></use>
+                  </svg>
+                </div>
                 <input class="login__login-input" type="text" />
               </div>
               <div class="login__button_login flex justify-between">
@@ -58,14 +70,17 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped lang="scss">
+// need to change the backgroud color for input field and icon
 .login {
   background-color: orange;
 
   &__login-input {
     border: 2px solid red;
     height: 3.5rem;
-    width: 100%;
+    width: 85%;
     border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
   }
 }
 </style>
