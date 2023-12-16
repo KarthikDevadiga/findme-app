@@ -160,13 +160,16 @@ const dialog: Ref<boolean> = ref(true);
 function userLogin() {
   checkIsEmpty();
   charNumber();
+  //cheking if there is any errors
+  if (errorMessages.length === 0) {
+    console.log(userInfo);
+  }
 }
 
 function checkIsEmpty() {
   dialog.value = true;
   const result: IsValid = myFormValidation().isEmpty(userInfo);
   errorMessages = Array.isArray(result.values) ? [...result.values] : [];
-  console.log(result);
   dialog.value = result.valid;
 }
 
