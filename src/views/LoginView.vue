@@ -1,6 +1,12 @@
 <template>
   <div class="auth w-1/2 flex items-center justify-center text-dark-grey">
     <div class="form_section w-1/2 flex flex-col items-center">
+      <!-- Dialog box goes here -->
+      <dialog-box
+        class="self-start m-2 text-red-400"
+        v-show="dialog"
+        :dialogMessage="errorMessages"
+      ></dialog-box>
       <div class="login_form w-full">
         <form action="" type="submit" class="login">
           <!-- user-name -->
@@ -62,7 +68,7 @@
             <div class="login__loginButton-section flex flex-col mr-2">
               <button
                 type="submit"
-                class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg"
+                class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg active:bg-color-blue-2"
                 @click.prevent="userLogin()"
               >
                 Login
@@ -133,7 +139,9 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/Auth";
 import { reactive, ref } from "vue";
-import { helperFunctions } from "../hooks/myHelperFunctions";
+import type { Ref } from "vue";
+import { myFormValidation } from "../hooks/myFormValidation";
+import DialogBox from "@/components/DialogBox.vue";
 
 interface User {
   userName: string;
@@ -145,14 +153,15 @@ const userInfo: User = reactive({
   userName: "",
   userPassword: "",
 });
-const errorMessage = "";
-const helperFun = helperFunctions();
+let errorMessages: string[] = [];
+const dialog: Ref<boolean> = ref(false);
 
 function userLogin() {
-  console.log(
-    `username : ${userInfo.userName} password ${userInfo.userPassword}`
-  );
-  console.log(helperFun.isEmpty(userInfo));
+  dialog.value = false;
+  const result = myFormValidation().isEmpty(userInfo);
+  errorMessages = Array.isArray(result.values) ? [...result.values] : [];
+  console.log(errorMessages);
+  dialog.value = result.isEmpty;
 }
 </script>
 
@@ -222,4 +231,4 @@ function userLogin() {
   color: #000; /* Adjust the color as needed */
 }
 </style>
-@/hooks/myHelperFunctions
+@/hooks/myHelperFunctions ../hooks/myFormValidation

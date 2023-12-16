@@ -10,6 +10,7 @@ module.exports = {
         "light-grey": "#f9f5f3",
         "color-light-3": "#d3c7c3",
         "color-blue-1": "#1778f2",
+        "color-blue-2": "#1060c4",
         facebook: "#3b5998",
         "facebook-1": "#304a80",
         linkdin: "#0a66c2",
