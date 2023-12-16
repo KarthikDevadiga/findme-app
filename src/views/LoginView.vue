@@ -4,7 +4,7 @@
       <!-- Dialog box goes here -->
       <dialog-box
         class="self-start m-2 text-red-400"
-        v-show="dialog"
+        v-show="!dialog"
         :dialogMessage="errorMessages"
       ></dialog-box>
       <div class="login_form w-full">
@@ -142,6 +142,7 @@ import { reactive, ref } from "vue";
 import type { Ref } from "vue";
 import { myFormValidation } from "../hooks/myFormValidation";
 import DialogBox from "@/components/DialogBox.vue";
+import type { IsValid } from "@/hooks/myInterfaces";
 
 interface User {
   userName: string;
@@ -153,15 +154,30 @@ const userInfo: User = reactive({
   userName: "",
   userPassword: "",
 });
-let errorMessages: string[] = [];
-const dialog: Ref<boolean> = ref(false);
+let errorMessages: string[];
+const dialog: Ref<boolean> = ref(true);
 
 function userLogin() {
-  dialog.value = false;
-  const result = myFormValidation().isEmpty(userInfo);
+  checkIsEmpty();
+  charNumber();
+}
+
+function checkIsEmpty() {
+  dialog.value = true;
+  const result: IsValid = myFormValidation().isEmpty(userInfo);
   errorMessages = Array.isArray(result.values) ? [...result.values] : [];
-  console.log(errorMessages);
-  dialog.value = result.isEmpty;
+  console.log(result);
+  dialog.value = result.valid;
+}
+
+function charNumber() {
+  // to check number of charecters
+  const passwordObj = { userPassword: userInfo.userPassword }; // destructuring taking only userpassword from userInfo.
+  const result: IsValid = myFormValidation().minChar(8, passwordObj);
+  if (dialog.value) dialog.value = result.valid;
+  result.values?.forEach((ele) => {
+    errorMessages.push(ele);
+  });
 }
 </script>
 
