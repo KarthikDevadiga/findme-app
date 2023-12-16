@@ -3,6 +3,7 @@
     <div class="form_section w-1/2 flex flex-col items-center">
       <div class="login_form w-full">
         <form action="" type="submit" class="login">
+          <!-- user-name -->
           <div class="login__user-name flex items-center mx-2 mb-6">
             <div
               class="login__user-icon p-2 bg-transparent rounded-l-lg border border-color-light-3 h-14"
@@ -13,8 +14,13 @@
                 ></use>
               </svg>
             </div>
-            <input class="login__login-input" type="text" />
+            <input
+              v-model="userInfo.userName"
+              class="login__login-input"
+              type="text"
+            />
           </div>
+          <!-- user-password -->
           <div class="login__user-password flex items-center mx-2 mb-6">
             <div
               class="login__key-icon p-2 bg-transparent rounded-l-lg border border-color-light-3 h-14"
@@ -25,7 +31,11 @@
                 ></use>
               </svg>
             </div>
-            <input class="login__login-input" type="text" />
+            <input
+              v-model="userInfo.userPassword"
+              class="login__login-input"
+              type="text"
+            />
           </div>
           <div class="login__button_login flex justify-between m-2">
             <div
@@ -42,6 +52,7 @@
               </div>
 
               <button
+                type="button"
                 class="login__register-link mb-3 text-blue-500"
                 @click.prevent="authStore.toggleAuth()"
               >
@@ -49,10 +60,14 @@
               </button>
             </div>
             <div class="login__loginButton-section flex flex-col mr-2">
-              <button class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg">
+              <button
+                type="submit"
+                class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg"
+                @click.prevent="userLogin()"
+              >
                 Login
               </button>
-              <button class="login__register-link m-3" href="#">
+              <button type="button" class="login__register-link m-3" href="#">
                 Forgot password ?
               </button>
             </div>
@@ -117,8 +132,28 @@
 
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/Auth";
+import { reactive, ref } from "vue";
+import { helperFunctions } from "../hooks/myHelperFunctions";
+
+interface User {
+  userName: string;
+  userPassword: string;
+}
 
 const authStore = useAuthStore();
+const userInfo: User = reactive({
+  userName: "",
+  userPassword: "",
+});
+const errorMessage = "";
+const helperFun = helperFunctions();
+
+function userLogin() {
+  console.log(
+    `username : ${userInfo.userName} password ${userInfo.userPassword}`
+  );
+  console.log(helperFun.isEmpty(userInfo));
+}
 </script>
 
 <style scoped lang="scss">
@@ -187,3 +222,4 @@ const authStore = useAuthStore();
   color: #000; /* Adjust the color as needed */
 }
 </style>
+@/hooks/myHelperFunctions
