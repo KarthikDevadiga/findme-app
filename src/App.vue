@@ -5,10 +5,12 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div
-    class="min-h-screen bg-gradient-to-r from-color-primary-2 to-color-primary-1 flex items-center justify-center"
+    class="sm:min-h-screen h-screen bg-gradient-to-r from-color-primary-2 to-color-primary-1 flex items-center justify-center"
   >
     <!-- inner square -->
-    <div class="h-[60rem] w-3/5 bg-white rounded-[3rem] flex flex-row">
+    <div
+      class="h-screen w-screen bg-white rounded-[3rem] flex flex-row sm:w-screen md:w-3/5 sm:h-[60rem]"
+    >
       <LoginSignUp></LoginSignUp>
 
       <!-- User Dash-board -->

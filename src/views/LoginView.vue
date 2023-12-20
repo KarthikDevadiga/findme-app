@@ -1,6 +1,8 @@
 <template>
-  <div class="auth w-1/2 flex items-center justify-center text-dark-grey">
-    <div class="form_section w-1/2 flex flex-col items-center">
+  <div>
+    <div
+      class="form_section w-full sm:w-1/2 flex flex-col items-center md:w-3/4"
+    >
       <!-- Dialog box goes here -->
       <dialog-box
         class="self-start m-2 text-red-400"
@@ -16,7 +18,7 @@
             >
               <svg class="user-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-user"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-user"
                 ></use>
               </svg>
             </div>
@@ -33,7 +35,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-key"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-key"
                 ></use>
               </svg>
             </div>
@@ -54,7 +56,7 @@
                   id="remember-me"
                   value="remember-me"
                 />
-                <p class="login__remberme-me ml-3 self-start">Remeber Me</p>
+                <p class="login__remberme-me mx-3 self-start">Remeber Me</p>
               </div>
 
               <button
@@ -94,7 +96,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-white">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-facebook"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-facebook"
                 ></use>
               </svg>
             </div>
@@ -108,7 +110,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-white">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-pinterest-with-circle"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-pinterest-with-circle"
                 ></use>
               </svg>
             </div>
@@ -122,7 +124,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-white">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-linkedin-with-circle"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-linkedin-with-circle"
                 ></use>
               </svg>
             </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="auth w-1/2 flex items-center justify-center text-dark-grey">
+  <div>
     <div class="form_section w-1/2 flex flex-col items-center">
       <div class="siginIn_form w-full">
         <form action="" type="submit" class="siginIn">
@@ -10,7 +10,7 @@
             >
               <svg class="user-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-user"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-user"
                 ></use>
               </svg>
             </div>
@@ -27,7 +27,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-key"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-key"
                 ></use>
               </svg>
             </div>
@@ -44,7 +44,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-key"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-key"
                 ></use>
               </svg>
             </div>
@@ -61,7 +61,7 @@
             >
               <svg class="key-icon h-9 w-8 fill-dark-grey">
                 <use
-                  xlink:href="src/assets/svg/icomoon/sprite.svg#icon-key"
+                  xlink:href="@/assets/svg/icomoon/sprite.svg#icon-key"
                 ></use>
               </svg>
             </div>
