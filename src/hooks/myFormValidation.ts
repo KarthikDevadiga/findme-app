@@ -1,36 +1,27 @@
-import type { IsValid } from "@/hooks/myInterfaces";
+import { useAuthStore } from "@/stores/Auth";
 
 export const myFormValidation = () => {
-  function isEmpty(obj: object): IsValid {
+  const authStore = useAuthStore();
+  function isEmpty(obj: object) {
     const entries = Object.entries(obj);
-    const emptyValues: IsValid = {
-      valid: true,
-      values: [],
-    };
     entries.forEach(([key, val]) => {
       if (!val) {
-        emptyValues.values?.push(`'${key}' field is Empty`);
-        emptyValues.valid = false;
+        authStore.formStatus.values?.push(`'${key}' field is Empty`);
+        authStore.formStatus.valid = false;
       }
     });
-    return emptyValues;
   }
 
-  function minChar(charNo: number, obj: object): IsValid {
+  function minChar(charNo: number, obj: object) {
     const entries = Object.entries(obj);
-    const fieldInfo: IsValid = {
-      valid: true,
-      values: [],
-    };
     entries.forEach(([key, val]) => {
       if (val.length < charNo) {
-        fieldInfo.valid = false;
-        fieldInfo.values?.push(
+        authStore.formStatus.valid = false;
+        authStore.formStatus.values?.push(
           `'${key}' field requires atleast ${charNo} charaters`
         );
       }
     });
-    return fieldInfo;
   }
 
   return { isEmpty, minChar };

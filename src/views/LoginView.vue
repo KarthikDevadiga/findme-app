@@ -6,8 +6,8 @@
       <!-- Dialog box goes here -->
       <dialog-box
         class="self-start m-2 text-red-400"
-        v-show="!dialog"
-        :dialogMessage="errorMessages"
+        v-show="!authStore.formStatus.valid"
+        :dialogMessage="authStore.formStatus.values"
       ></dialog-box>
       <div class="login_form w-full">
         <form action="" type="submit" class="login">
@@ -141,53 +141,24 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/Auth";
 import { reactive, ref } from "vue";
-import type { Ref } from "vue";
 import { myFormValidation } from "../hooks/myFormValidation";
 import DialogBox from "@/components/DialogBox.vue";
-import type { IsValid } from "@/hooks/myInterfaces";
-
-interface User {
-  userName: string;
-  userPassword: string;
-}
+import type { User } from "@/hooks/myInterfaces";
 
 const authStore = useAuthStore();
 const userInfo: User = reactive({
   userName: "",
   userPassword: "",
 });
-let errorMessages: string[];
-const dialog: Ref<boolean> = ref(true);
 
 function userLogin() {
-  checkIsEmpty();
-  charNumber();
-  //cheking if there is any errors
-  if (errorMessages.length === 0) {
-    console.log(userInfo);
-  }
-}
-
-function checkIsEmpty() {
-  dialog.value = true;
-  const result: IsValid = myFormValidation().isEmpty(userInfo);
-  errorMessages = Array.isArray(result.values) ? [...result.values] : [];
-  dialog.value = result.valid;
-}
-
-function charNumber() {
-  // to check number of charecters
-  const passwordObj = { userPassword: userInfo.userPassword }; // destructuring taking only userpassword from userInfo.
-  const result: IsValid = myFormValidation().minChar(8, passwordObj);
-  if (dialog.value) dialog.value = result.valid;
-  result.values?.forEach((ele) => {
-    errorMessages.push(ele);
-  });
+  authStore.resetformStatus();
+  myFormValidation().isEmpty(userInfo);
+  myFormValidation().minChar(8, { userPassword: userInfo.userPassword });
 }
 </script>
 
 <style scoped lang="scss">
-// need to change the backgroud color for input field and icon
 .login {
   // background-color: orange;
 

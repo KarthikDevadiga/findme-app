@@ -7,7 +7,7 @@
   ></LoginView>
   <!-- signUp functionalities -->
   <SignupView
-    class="auth w-1/2 flex items-center justify-center text-dark-grey"
+    class="auth w-full flex items-center justify-center text-dark-grey sm:w-1/2"
     v-else
   ></SignupView>
 

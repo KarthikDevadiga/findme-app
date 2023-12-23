@@ -1,6 +1,14 @@
 <template>
   <div>
-    <div class="form_section w-1/2 flex flex-col items-center">
+    <!-- duplicate class -->
+    <div
+      class="form_section w-full sm:w-1/2 flex flex-col items-center md:w-3/4"
+    >
+      <dialog-box
+        class="self-start m-2 text-red-400"
+        v-show="!authStore.formStatus.valid"
+        :dialogMessage="authStore.formStatus.values"
+      ></dialog-box>
       <div class="siginIn_form w-full">
         <form action="" type="submit" class="siginIn">
           <!-- user-name -->
@@ -15,6 +23,7 @@
               </svg>
             </div>
             <input
+              v-model="userInfo.userName"
               class="siginIn__siginIn-input"
               type="text"
               placeholder="User Name"
@@ -32,6 +41,7 @@
               </svg>
             </div>
             <input
+              v-model="userInfo.userEmail"
               class="siginIn__siginIn-input"
               type="text"
               placeholder="Email Address"
@@ -49,6 +59,7 @@
               </svg>
             </div>
             <input
+              v-model="userInfo.userPassword"
               class="siginIn__siginIn-input"
               type="password"
               placeholder="Password"
@@ -66,26 +77,33 @@
               </svg>
             </div>
             <input
+              v-model="userInfo.reUserPassword"
               class="siginIn__siginIn-input"
               type="password"
               placeholder="Re-Enter Password"
             />
           </div>
 
-          <div class="siginIn__button_siginIn flex justify-between m-2">
+          <div
+            class="siginIn__button_siginIn flex justify-between m-2 flex-row-reverse"
+          >
             <div
               class="siginIn__remeber-section flex flex-col justify-between items-center"
             >
+              <button
+                type="submit"
+                class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg active:bg-color-blue-2"
+                @click.prevent="userRegister"
+              >
+                SignIn
+              </button>
+            </div>
+            <div class="siginIn__siginInButton-section flex flex-col mr-2">
               <button
                 class="siginIn__register-link mb-3 text-blue-500"
                 @click.prevent="authStore.toggleAuth()"
               >
                 Login
-              </button>
-            </div>
-            <div class="siginIn__siginInButton-section flex flex-col mr-2">
-              <button class="p-3.5 bg-color-blue-1 text-[#FFF] rounded-lg">
-                siginIn
               </button>
             </div>
           </div>
@@ -97,8 +115,31 @@
 
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/Auth";
+import type { User } from "@/hooks/myInterfaces";
+import { reactive, ref } from "vue";
+import { myFormValidation } from "@/hooks/myFormValidation";
+import DialogBox from "@/components/DialogBox.vue";
+
+interface UserRegister {
+  userName: string;
+  userEmail: string;
+  userPassword: string;
+  reUserPassword: string;
+}
 
 const authStore = useAuthStore();
+const userInfo: UserRegister = reactive({
+  userName: "",
+  userEmail: "",
+  userPassword: "",
+  reUserPassword: "",
+});
+
+function userRegister() {
+  authStore.resetformStatus();
+  myFormValidation().isEmpty(userInfo);
+  myFormValidation().minChar(8, { userPassword: userInfo.userPassword });
+}
 </script>
 
 <style scoped lang="scss">
